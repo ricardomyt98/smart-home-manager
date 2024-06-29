@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -34,8 +34,9 @@
   },
   "devDependencies": {
     "@types/lodash": "4.14.196",
-    "prettier": "2.8.8",
     "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-prettier": "4.2.1"
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "4.2.1",
+    "prettier": "2.8.8"
   }
 }

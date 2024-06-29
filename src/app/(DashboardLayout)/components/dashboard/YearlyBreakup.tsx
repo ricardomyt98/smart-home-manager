@@ -1,10 +1,11 @@
-import dynamic from 'next/dynamic';
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+import { Avatar, Grid, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Stack, Typography, Avatar } from '@mui/material';
 import { IconArrowUpLeft } from '@tabler/icons-react';
+import dynamic from 'next/dynamic';
 
 import DashboardCard from '@/app/(DashboardLayout)/components/shared/DashboardCard';
+
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const YearlyBreakup = () => {
   // chart color

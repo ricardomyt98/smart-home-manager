@@ -1,6 +1,7 @@
-import { useMediaQuery, Box, Drawer } from '@mui/material';
-import Logo from '../shared/logo/Logo';
+import { Box, Drawer, useMediaQuery } from '@mui/material';
+
 import SidebarItems from './SidebarItems';
+import Logo from '../shared/logo/Logo';
 
 interface ItemType {
   isMobileSidebarOpen: boolean;

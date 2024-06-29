@@ -1,13 +1,12 @@
 import {
   IconAperture,
+  IconDevices,
+  IconHelp,
   IconLayoutDashboard,
+  IconListCheck,
   IconMoodHappy,
   IconSettings,
-  IconDevices,
-  IconListCheck,
-  IconHelp,
 } from '@tabler/icons-react';
-
 import { uniqueId } from 'lodash';
 
 const MenuItems = [
