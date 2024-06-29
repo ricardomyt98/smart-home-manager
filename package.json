@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@emotion/cache": "11.11.0",
@@ -32,6 +33,9 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.196"
+    "@types/lodash": "4.14.196",
+    "prettier": "2.8.8",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "4.2.1"
   }
 }

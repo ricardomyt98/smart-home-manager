@@ -1,75 +1,72 @@
 import {
   IconAperture,
-  IconCopy,
   IconLayoutDashboard,
-  IconLogin,
   IconMoodHappy,
-  IconTypography,
-  IconUserPlus,
-} from "@tabler/icons-react";
+  IconSettings,
+  IconDevices,
+  IconListCheck,
+  IconHelp,
+} from '@tabler/icons-react';
 
-import { uniqueId } from "lodash";
+import { uniqueId } from 'lodash';
 
-const Menuitems = [
+const MenuItems = [
   {
     navlabel: true,
-    subheader: "Home",
+    subheader: 'Home',
   },
-
   {
     id: uniqueId(),
-    title: "Dashboard",
+    title: 'Dashboard',
     icon: IconLayoutDashboard,
-    href: "/",
+    href: '/(DashboardLayout)/dashboard',
   },
   {
     navlabel: true,
-    subheader: "Utilities",
+    subheader: 'Dispositivos',
   },
   {
     id: uniqueId(),
-    title: "Typography",
-    icon: IconTypography,
-    href: "/utilities/typography",
-  },
-  {
-    id: uniqueId(),
-    title: "Shadow",
-    icon: IconCopy,
-    href: "/utilities/shadow",
+    title: 'Dispositivos',
+    icon: IconDevices,
+    href: '/(DashboardLayout)/devices',
   },
   {
     navlabel: true,
-    subheader: "Auth",
+    subheader: 'Rotinas',
   },
   {
     id: uniqueId(),
-    title: "Login",
-    icon: IconLogin,
-    href: "/authentication/login",
-  },
-  {
-    id: uniqueId(),
-    title: "Register",
-    icon: IconUserPlus,
-    href: "/authentication/register",
+    title: 'Rotinas',
+    icon: IconListCheck,
+    href: '/(DashboardLayout)/routines',
   },
   {
     navlabel: true,
-    subheader: "Extra",
+    subheader: 'Configurações',
   },
   {
     id: uniqueId(),
-    title: "Icons",
-    icon: IconMoodHappy,
-    href: "/icons",
+    title: 'Configurações',
+    icon: IconSettings,
+    href: '/(DashboardLayout)/settings',
+  },
+  {
+    navlabel: true,
+    subheader: 'Ajuda',
   },
   {
     id: uniqueId(),
-    title: "Sample Page",
+    title: 'Ajuda',
+    icon: IconHelp,
+    href: '/(DashboardLayout)/help',
+  },
+  {
+    id: uniqueId(),
+    title: 'Sample Page',
     icon: IconAperture,
-    href: "/sample-page",
+    href: '/(DashboardLayout)/sample-page',
   },
 ];
 
-export default Menuitems;
+export default MenuItems;
