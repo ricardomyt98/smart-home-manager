@@ -19,7 +19,7 @@ const MenuItems = [
     id: uniqueId(),
     title: 'Dashboard',
     icon: IconLayoutDashboard,
-    href: '/(DashboardLayout)/dashboard',
+    href: '/',
   },
   {
     navlabel: true,
@@ -29,7 +29,7 @@ const MenuItems = [
     id: uniqueId(),
     title: 'Dispositivos',
     icon: IconDevices,
-    href: '/(DashboardLayout)/devices',
+    href: '/devices',
   },
   {
     navlabel: true,
@@ -39,7 +39,7 @@ const MenuItems = [
     id: uniqueId(),
     title: 'Rotinas',
     icon: IconListCheck,
-    href: '/(DashboardLayout)/routines',
+    href: '/routines',
   },
   {
     navlabel: true,
@@ -49,7 +49,7 @@ const MenuItems = [
     id: uniqueId(),
     title: 'Configurações',
     icon: IconSettings,
-    href: '/(DashboardLayout)/settings',
+    href: '/settings',
   },
   {
     navlabel: true,
@@ -59,13 +59,13 @@ const MenuItems = [
     id: uniqueId(),
     title: 'Ajuda',
     icon: IconHelp,
-    href: '/(DashboardLayout)/help',
+    href: '/help',
   },
   {
     id: uniqueId(),
     title: 'Sample Page',
     icon: IconAperture,
-    href: '/(DashboardLayout)/sample-page',
+    href: '/sample-page',
   },
 ];
 
