@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -9,9 +8,11 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import {
   Box,
+  Card,
+  CardContent,
+  CardHeader,
   Grid,
   IconButton,
-  ListItemIcon,
   Menu,
   MenuItem,
   Tab,
@@ -20,7 +21,7 @@ import {
 } from '@mui/material';
 
 import PageContainer from '@/app/(DashboardLayout)/components/container/PageContainer';
-import DashboardCard from '@/app/(DashboardLayout)/components/shared/DashboardCard';
+import ResponsiveContainer from '@/app/(DashboardLayout)/components/container/ResponsiveContainer';
 
 // Define the type for a device
 interface Device {
@@ -117,10 +118,10 @@ const DeviceCard = ({
   const isOn = device.type === 'lamp' && isOnline;
 
   return (
-    <DashboardCard>
-      <Box>
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography variant="h6">{device.icon}</Typography>
+    <Card variant="outlined">
+      <CardHeader
+        avatar={<Typography variant="h6">{device.icon}</Typography>}
+        action={
           <IconButton
             color="primary"
             disabled={!isOnline}
@@ -131,19 +132,21 @@ const DeviceCard = ({
           >
             <PowerSettingsNewIcon />
           </IconButton>
-        </Box>
-        <Typography variant="subtitle1">{device.name}</Typography>
+        }
+        title={device.name}
+        subheader={device.room}
+      />
+      <CardContent>
         <Typography variant="body2" color={isOnline ? 'green' : 'red'}>
           {isOnline ? 'Online' : 'Offline'}
         </Typography>
-        <Typography variant="body2">{device.room}</Typography>
-      </Box>
-    </DashboardCard>
+      </CardContent>
+    </Card>
   );
 };
 
 const DevicesPage = () => {
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid'); // 'grid' or 'list'
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [devices, setDevices] = useState(initialDevices);
   const [selectedRoom, setSelectedRoom] = useState('Todos');
@@ -191,79 +194,85 @@ const DevicesPage = () => {
       title={`${houseName}`}
       description="Visualize e gerencie seus dispositivos inteligentes"
     >
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={2}
-      >
-        <Typography variant="h4">{houseName}</Typography>
-        <div>
-          <IconButton onClick={handleMenuClick}>
-            <MoreVertIcon />
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <MenuItem
-              onClick={() =>
-                handleViewChange(viewMode === 'grid' ? 'list' : 'grid')
-              }
+      <ResponsiveContainer>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          mb={2}
+        >
+          <Typography variant="h4">{houseName}</Typography>
+          <div>
+            <IconButton onClick={handleMenuClick}>
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
             >
-              <ListItemIcon>
-                {viewMode === 'grid' ? <ViewListIcon /> : <ViewModuleIcon />}
-              </ListItemIcon>
-              <Typography variant="inherit" style={{ marginLeft: 8 }}>
-                {viewMode === 'grid' ? 'Modo Lista' : 'Modo Grade'}
-              </Typography>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <ManageAccountsIcon />
-              </ListItemIcon>
-              <Typography variant="inherit" style={{ marginLeft: 8 }}>
-                Gerenciar Dispositivos
-              </Typography>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <SettingsIcon />
-              </ListItemIcon>
-              <Typography variant="inherit" style={{ marginLeft: 8 }}>
-                Gerenciar Ambientes
-              </Typography>
-            </MenuItem>
-          </Menu>
-        </div>
-      </Box>
-      <Tabs
-        value={selectedRoom}
-        onChange={handleRoomChange}
-        variant="scrollable"
-        scrollButtons="auto"
-        aria-label="scrollable auto tabs example"
-      >
-        {rooms.map((room) => (
-          <Tab key={room} label={room} value={room} />
-        ))}
-      </Tabs>
-      <Grid container spacing={2}>
-        {filteredDevices.map((device) => (
-          <Grid item xs={12} sm={viewMode === 'grid' ? 6 : 12} key={device.id}>
-            <DeviceCard device={device} onToggle={handleToggleDevice} />
+              {viewMode === 'list' ? (
+                <MenuItem onClick={() => handleViewChange('grid')}>
+                  <Box display="flex" alignItems="center">
+                    <ViewModuleIcon sx={{ mr: 1 }} />
+                    <Typography variant="body2">Vista em Grade</Typography>
+                  </Box>
+                </MenuItem>
+              ) : (
+                <MenuItem onClick={() => handleViewChange('list')}>
+                  <Box display="flex" alignItems="center">
+                    <ViewListIcon sx={{ mr: 1 }} />
+                    <Typography variant="body2">Vista em Lista</Typography>
+                  </Box>
+                </MenuItem>
+              )}
+              <MenuItem>
+                <Box display="flex" alignItems="center">
+                  <SettingsIcon sx={{ mr: 1 }} />
+                  <Typography variant="body2">
+                    Gerenciamento de Dispositivos
+                  </Typography>
+                </Box>
+              </MenuItem>
+            </Menu>
+          </div>
+        </Box>
+        <Box sx={{ overflowX: 'auto' }}>
+          <Tabs
+            value={selectedRoom}
+            onChange={handleRoomChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example"
+          >
+            {rooms.map((room) => (
+              <Tab key={room} label={room} value={room} />
+            ))}
+          </Tabs>
+        </Box>
+        <Box sx={{ padding: 2 }}>
+          <Grid container spacing={2} sx={{ overflowX: 'hidden' }}>
+            {filteredDevices.map((device) => (
+              <Grid
+                item
+                xs={12}
+                sm={viewMode === 'grid' ? 6 : 12}
+                key={device.id}
+              >
+                <DeviceCard device={device} onToggle={handleToggleDevice} />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+        </Box>
+      </ResponsiveContainer>
     </PageContainer>
   );
 };
