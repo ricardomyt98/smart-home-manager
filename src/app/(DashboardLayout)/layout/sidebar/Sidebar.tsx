@@ -24,6 +24,7 @@ const Sidebar = ({
         sx={{
           width: sidebarWidth,
           flexShrink: 0,
+          overflow: 'hidden',
         }}
       >
         {/* ------------------------------------------- */}

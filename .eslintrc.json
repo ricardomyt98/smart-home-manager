@@ -15,18 +15,13 @@
         "endOfLine": "lf"
       }
     ],
-    "sort-imports": [
-      "error",
-      { "ignoreCase": true, "ignoreDeclarationSort": true }
-    ],
+    "sort-imports": "off",
     "import/order": [
       "error",
       {
         "groups": [
-          ["external", "builtin"],
-          "internal",
-          ["sibling", "parent"],
-          "index"
+          ["builtin", "external"],
+          ["internal", "parent", "sibling", "index"]
         ],
         "pathGroups": [
           {
