@@ -22,7 +22,6 @@ const ResponsiveContainer: React.FC<Props> = ({ children }) => {
         width: availableWidth,
         overflowX: 'hidden', // Add this line to hide horizontal overflow
         overflowY: 'auto',
-        backgroundColor: 'red',
       }}
     >
       {children}
